@@ -1,0 +1,23 @@
+###
+POST http://localhost:9000/api/authors_create
+Content-Type: application/json
+
+{
+    "firstname" : "nadia",
+    "lastname" : "konima"
+}
+
+###
+GET http://localhost:9000/api/auhtors_read
+
+###
+PUT http://localhost:9000/api/authors_update/2
+Content-Type: application/json
+
+{
+    "firstname" : "nadia",
+    "lastname" : "fifa"
+}
+
+###
+DELETE http://localhost:9000/api/authors_delete/2

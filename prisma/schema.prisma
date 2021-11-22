@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Publisher{
+  id                    Int         @id @default(autoincrement())
+  name                  String      @unique
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+
+  //relasi
+  books                 Books[]
+}
+
+model Authors{
+  id                    Int         @id @default(autoincrement())
+  firstname             String
+  lastname              String
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+
+  //relasi
+  book_author           Book_authors?
+}
+
+model Books{
+  id                    Int         @id @default(autoincrement())
+  tittle                String      @unique
+  total_pages           Int
+  filename              String
+  book_path             String
+  published_date        DateTime    @default(now())
+
+  //relation
+  publisher_id          Int         
+  publisher             Publisher   @relation(fields: [publisher_id], references: [id])
+
+  book_authors          Book_authors?
+  book_genres           Book_genres?
+}
+
+
+
+model Genres{
+  @@id([genre])
+  
+  genre                 String      @unique
+
+  //relasi
+  book_genres           Book_genres?
+}
+
+model Book_authors{
+  id                    Int         @id @default(autoincrement())
+
+  //relasi
+  book_id               Int
+  author_id             Int
+
+  book                  Books       @relation(fields: [book_id], references: [id])
+  authors               Authors     @relation(fields: [author_id], references: [id])
+}
+
+model Book_genres{
+  id                    Int         @id @default(autoincrement())
+
+  //relasi
+  book_id               Int
+  genre_id              String
+
+  book                  Books       @relation(fields: [book_id], references: [id])
+  genre                 Genres      @relation(fields: [genre_id], references: [genre])
+}

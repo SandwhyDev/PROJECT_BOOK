@@ -1,0 +1,13 @@
+###
+GET HTTP://localhost:9000/api/publisher
+
+###
+POST http://localhost:9000/api/publisher_create
+Content-Type: application/json
+
+{
+    "name" : "komic"
+}
+
+###
+GET http://localhost:9000/api/publisher_read_all
