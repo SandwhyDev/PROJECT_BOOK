@@ -11,3 +11,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:9000/api/publisher_read_all
+
+
+###
+GET http://localhost:9000/api/books_read_all

@@ -39,4 +39,18 @@ books.post("/books_create",book_uploads.single("book") ,async(req,res)=>{
     }
 })
 
+books.get("/books_read_all", async(req,res)=>{
+    try {
+        const result = await ps.books.findMany()
+        res.json({
+            success : true,
+            query : result
+        })
+    } catch (error) {
+        res.json({
+            success : false,
+            error : error.message
+        })
+    }
+})
 module.exports = books
