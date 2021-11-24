@@ -15,3 +15,15 @@ GET http://localhost:9000/api/publisher_read_all
 
 ###
 GET http://localhost:9000/api/books_read_all
+
+###
+PUT http://localhost:9000/api/books_update/3
+Content-Type: application/json
+
+{
+    "tittle" : "update title 1",
+    "total_pages" : "3"
+}
+
+###
+DELETE http://localhost:9000/api/books_delete/3
