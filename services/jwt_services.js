@@ -37,3 +37,4 @@ const verify_jwt = async (req,res,next)=>{
     }
 }
 
+module.exports = {jwt_sign, verify_jwt}

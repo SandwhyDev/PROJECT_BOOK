@@ -1,5 +1,7 @@
 const express = require("express")
+require('dotenv').config()
 const ps = require("../prisma/connection")
+const { jwt_sign } = require("../services/jwt_services")
 
 
 const publisher = express.Router()
@@ -28,7 +30,11 @@ publisher.post("/publisher_create", async(req,res)=>{
         res.json({
             success : true,
             msg : "berhasil buat publisher",
-            query : result
+            query : result,
+            token : jwt_sign({
+                ...result,
+                password : process.env.SECRET_KEY
+            })
         })
     } catch (error) {
         res.json({
